@@ -1,6 +1,7 @@
 // Creating the GameScreen component.
 import React, { useState, useEffect, useCallback } from 'react';
 import { Question } from '../types';
+import { playCorrectSound, playIncorrectSound } from '../services/soundService';
 
 interface GameScreenProps {
   questions: Question[];
@@ -46,6 +47,9 @@ const GameScreen: React.FC<GameScreenProps> = ({ questions, onGameOver }) => {
 
     if (option === currentQuestion.answer) {
       setScore(prevScore => prevScore + 1);
+      playCorrectSound();
+    } else {
+      playIncorrectSound();
     }
   };
   

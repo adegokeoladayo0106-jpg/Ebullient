@@ -1,6 +1,7 @@
 // Creating the GameOverScreen component.
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TOTAL_QUESTIONS } from '../constants';
+import { playGameOverSound } from '../services/soundService';
 
 interface GameOverScreenProps {
   score: number;
@@ -8,6 +9,10 @@ interface GameOverScreenProps {
 }
 
 const GameOverScreen: React.FC<GameOverScreenProps> = ({ score, onRestart }) => {
+  useEffect(() => {
+    playGameOverSound();
+  }, []);
+
   return (
     <div className="text-center">
       <h2 className="text-4xl font-bold mb-4 font-themed">Game Over!</h2>
